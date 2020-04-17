@@ -3,42 +3,41 @@ package com.edu.chapterone.firststeps;
 import java.io.*;
 import java.util.*;
 public class TexQuotes{
-	public static void main(String[] args) {
-
-		System.out.print("What is your address? ");
-
-		// Get the user input		
-		Scanner s = new Scanner(System.in);
-
-		// declare the BufferedReader Class
-    	//BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-		BufferedReader reader = new BufferedReader(new StringReader(s.nextLine()));
-
-		boolean flag = false;
-		// catch the possible IOException by the readLine() method
-		try {
-
-			// check if stream is ready to be read			
-			while(flag = reader.ready() && reader.readLine() != null){
-				System.out.println(flag);
-				System.out.println(reader.readLine());
-
-				/*
-				if( reader.readLine() == null ) reader.close(); 
-				// print the text read by the BufferedReader
-				System.out.println("String read from console input:" + reader.readLine());	
-				flag = reader.ready();*/
-				
-			}
-
-			// close the BufferedReader object
-			s.close();
-			reader.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+	public static void main(String[] args) throws IOException {
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //leer la primera
+	    
+	    String dato;
+	    String dataOut;
+	    StringBuilder dataBuild = new StringBuilder();
+	    boolean isLeft = true;
+	    while( ( dato =  br.readLine()) != null) {
+	    	char[] chars = dato.toCharArray();
+	    	for(char ch: chars) {
+	    		
+	    		if(ch != '\"') {
+	    			dataBuild.append(ch);
+	    		}
+	    		else { 
+	    			if(isLeft) {
+	    			dataBuild.append('`').append('`');
+	    			isLeft = false;
+	    		}else {
+	    			dataBuild.append("'").append("'");
+	    		}
+	    			}
+	    		
+	    		
+	    		/*
+	    		(ch == '\"') ? 
+	    				dataBuild.append(dato) :
+	    				isLeft ? ( dataBuild.append('``') :*/ 
+	    				
+	    	}
+	    	dato = dataBuild.toString();
+	    	
+	    	System.out.println(dato);
+	    }
+	  
 	}
 }
